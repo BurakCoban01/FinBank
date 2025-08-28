@@ -1,0 +1,5 @@
+{
+    "geminicodeassist.enableTelemetry": false,
+    "telemetry.feedback.enabled": false,
+    "geminicodeassist.updateChannel": "Insiders"
+}
