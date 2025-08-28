@@ -74,24 +74,11 @@ FinBank, kullanıcıların kişisel bankacılık ve finans ürünlerine erişmes
 
 Proje, modern bir teknoloji yığını üzerine inşa edilmiştir ve backend ile frontend arasında net bir ayrım bulunan bir mimariye sahiptir.
 
-## 2. Projede Kullanılan Teknolojiler
-
-- **Backend:** ASP.NET Core 8 (C#)
-- **Frontend:** React 18 (TypeScript) with Create React App
-- **Veritabanı:** PostgreSQL
-- **API İletişimi:** RESTful API
-- **ORM:** Entity Framework Core
-- **UI Kütüphanesi:** Material-UI (MUI)
-- **Kimlik Doğrulama:** JWT (JSON Web Tokens)
-- **Grafikler:** Recharts
-
----
-
-## 3. Backend Mimarisi (FinTrack.API)
+## 2. Backend Mimarisi (FinTrack.API)
 
 Backend, klasik bir Katmanlı Mimari (Layered Architecture) ve Dependency Injection prensiplerini takip eder.
 
-### 3.1. Ana Katmanlar ve Klasörler
+### 2.1. Ana Katmanlar ve Klasörler
 
 - **`Controllers/`**: API endpoint'lerini tanımlar. Gelen HTTP isteklerini alır, ilgili servisleri çağırır ve HTTP yanıtlarını döndürür.
 - **`Services/`**: Tüm iş mantığının bulunduğu katmandır. Veritabanı işlemleri, harici API çağrıları ve karmaşık hesaplamalar burada yapılır.
@@ -102,7 +89,7 @@ Backend, klasik bir Katmanlı Mimari (Layered Architecture) ve Dependency Inject
 - **`Mappings/`**: `AutoMapper` profillerini içerir. `Model` nesneleri ile `DTO` nesneleri arasındaki dönüşümleri otomatikleştirir.
 - **`Program.cs`**: Uygulamanın başlangıç noktasıdır. Servislerin (Dependency Injection), middleware'lerin (Authentication, CORS vb.) ve diğer konfigürasyonların ayarlandığı yerdir.
 
-### 3.2. Veritabanı Modelleri (`Models/`)
+### 2.2. Veritabanı Modelleri (`Models/`)
 
 - **`User.cs`**: Kullanıcı bilgilerini (ID, username, şifre hash'i, ad, soyad) tutar.
 - **`Account.cs`**: Kullanıcının banka, nakit, yatırım gibi hesaplarını tutar. Bakiye, para birimi, hesap türü gibi bilgileri içerir.
@@ -114,7 +101,7 @@ Backend, klasik bir Katmanlı Mimari (Layered Architecture) ve Dependency Inject
 - **`UserAsset.cs`**: Bir kullanıcının sahip olduğu yatırım varlıklarını (portföy pozisyonları) tutar. Miktar, ortalama maliyet gibi bilgileri içerir.
 - **`UserTrackedAssets.cs`**: Bir kullanıcının takip listesine eklediği varlıkları tutar.
 
-### 3.3. Anahtar Servisler ve İşlevleri (`Services/`)
+### 2.3. Anahtar Servisler ve İşlevleri (`Services/`)
 
 - **`UserService.cs`**: Kullanıcı kaydı ve girişi (JWT token oluşturma) işlemlerini yönetir.
 - **`TransactionService.cs`**: Gelir/gider gibi standart işlemlerin oluşturulması, güncellenmesi ve silinmesinden sorumludur.
@@ -125,11 +112,11 @@ Backend, klasik bir Katmanlı Mimari (Layered Architecture) ve Dependency Inject
 
 ---
 
-## 4. Frontend Mimarisi (fintrack-client)
+## 3. Frontend Mimarisi (fintrack-client)
 
 Frontend, modern React prensipleri üzerine kurulmuştur ve bileşen tabanlı bir yapıya sahiptir.
 
-### 4.1. Ana Klasörler
+### 3.1. Ana Klasörler
 
 - **`pages/`**: Uygulamadaki her bir sayfaya karşılık gelen ana bileşenleri içerir (örn: `Dashboard.tsx`, `InvestmentsPage.tsx`, `Login.tsx`).
 - **`components/`**: Birden çok sayfada yeniden kullanılabilen daha küçük arayüz bileşenlerini barındırır (örn: `Layout.tsx`, `PrivateRoute.tsx`).
@@ -138,7 +125,7 @@ Frontend, modern React prensipleri üzerine kurulmuştur ve bileşen tabanlı bi
 - **`hooks/`**: Özel React hook'larını içerir. Örneğin, `useAuth.tsx` kullanıcı oturum durumunu yönetir.
 - **`App.tsx`**: Uygulamanın ana giriş noktasıdır. React Router kullanılarak sayfa yönlendirmeleri (routing) burada tanımlanır.
 
-### 4.2. Anahtar Bileşenler ve İşlevleri
+### 3.2. Anahtar Bileşenler ve İşlevleri
 
 - **`Layout.tsx`**: Uygulamanın genel yerleşimini (sol menü, üst bar) sağlar. Kullanıcı giriş yapmışsa menüyü ve ana içeriği (`Outlet`), yapmamışsa sadece `Outlet`'i (Login/Register sayfaları için) render eder.
 - **`Dashboard.tsx`**: Kullanıcının finansal durumuna genel bir bakış sunan ana sayfadır. Özet kartları, son işlemler listesi, haftalık nakit akışı grafiği ve hızlı eylem butonları gibi bileşenler içerir.
@@ -146,11 +133,11 @@ Frontend, modern React prensipleri üzerine kurulmuştur ve bileşen tabanlı bi
 - **`TransactionForm.tsx`**: Yeni işlem ekleme ve mevcut işlemleri düzenleme formunu içerir. Seçilen işlem türüne göre dinamik olarak farklı alanlar gösterir.
 - **`PrivateRoute.tsx`**: Belirli yollara (route) sadece giriş yapmış kullanıcıların erişebilmesini sağlayan bir sarmalayıcı (wrapper) bileşendir.
 
-### 4.3. API İletişimi
+### 3.3. API İletişimi
 
 - **`services/api.ts`**: Merkezi bir `axios` instance'ı oluşturur. Bu instance, tüm API isteklerine otomatik olarak `Authorization` başlığını (JWT token) ekleyen bir `interceptor` içerir. Bu sayede, her servis fonksiyonunda token'ı manuel olarak eklemeye gerek kalmaz.
 
 
-### 5. Kullanıcı Tercihleri ve Projede Uygulanan Metodolojiler
+### 4. Kullanıcı Tercihleri ve Projede Uygulanan Metodolojiler
        * Metodoloji Kuralları: Büyük kod bloklarının tek seferde değiştirilmemesi ve bunun yerine küçük, atomik değişiklikler uygulanarak projenin çalışır yapısının bozulmaması amaçlanmıştır. Büyük değişiklikler yapılması durumunda da geçmişteki kod, fonksiyon veya yapıların yorum olarak saklanmaya devam edilmesiyle değişiklikler arasındaki geçişin kolaylaştırılması hedeflenmiştir. 
        * API Kullanım Bilinci: Harici API'lerin kullanım limitlerine dikkat edilmekte ve Dashboard(ana sayfa) gibi sık yüklenen, kullanılan sayfalarda gereksiz olarak dış sağlayıcıların çağrılarından kaçınılmaktadır.
